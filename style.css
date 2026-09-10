@@ -1,0 +1,917 @@
+@charset "UTF-8";
+/* リセットCSS　すべての要素の余白とボックスサイズを初期化 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* リストの黒丸を消す */
+ul, ol {
+  list-style: none;
+}
+
+/* 画像がはみ出さないようにする */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+/* リンクの下線を消す（必要に応じて） */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/* サイト全体のフォントを一括で設定 */
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+ 
+  /* 【追加】全体の文字サイズを少し小さく（デフォルトは16pxなので、14pxに設定） */
+  font-size: 14px;
+  
+  /* 【追加】文字が小さくなった分、行の間を少しあけて読みやすくする */
+  line-height: 1.7;
+  
+  /* 【追加】全体の文字の色を真っ黒から少し優しいダークグレーに（お好みで） */
+  color: #333333; 
+}
+/* ボタン（魚のアイコン）のスタイル */
+.accordion-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  outline: none;
+  transition: transform 0.3s ease; /* 魚の動きを滑らかにする */
+}
+/* 1. アコーディオン全体を右端に寄せる（幅は自由に設定） */
+.accordion-container {
+  width: 180px;         /* メニューの横幅（お好みで変更してください） */
+  margin-left: auto;    /* これで全体が右端に寄ります */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* 【重要】中身の魚を右側に揃えます */
+    /* 【追加】メニューを浮かせるための「基準」に設定 */
+  position: relative;   
+}
+/* 魚の画像のサイズ調整 */
+.fish-icon {
+  width: 50px;  /* 好みのサイズに調整してください */
+  height: auto;
+  display: block;
+}
+
+/* メニューが開いているとき、魚を少し傾ける演出（不要なら削除OK） */
+.accordion-trigger.is-open {
+  transform: rotate(-20deg) scale(1.7); /* 少し左に傾いて大きくなる */
+}
+
+/* 展開するメニューのベース（最初は非表示） */
+.accordion-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease; /* スライドのアニメーション */
+    /* 【重要】メニューを浮かせて固定する */
+  position: absolute;   
+  top: 100%;           /* 魚のアイコンのすぐ下に配置 */
+  right: 0;            /* 右端にぴったり合わせる */
+  width: 100%;         /* 横幅（250px）いっぱいに広げる */
+  
+  /* 【重要】スライダーより手前に表示させる（数字が大きい方が上に来ます） */
+  z-index: 100;  
+}
+
+/* メニューの内側の余白（アニメーションを綺麗に見せるために必須） */
+.accordion-inner {
+  background-color: #f5f9fa; /* メニューの背景色 */
+  border-radius: 8px;
+}
+
+/* メニュー内のリスト装飾（自由にカスタマイズしてください） */
+.accordion-inner ul {
+  list-style: none;
+  padding:15px 10px;
+  margin: 0;
+}
+.accordion-inner li {
+  margin-bottom: 10px;
+}
+.accordion-inner li:last-child {
+  margin-bottom: 0;
+}
+.accordion-inner a {
+  color: #333333;          /* 元の文字色（濃いグレー） */
+  text-decoration: none;   /* 下線を消す */
+  display: block;          /* 文字のまわりをクリックしやすくする */
+  padding: 6px 0;          /* 上下に少し隙間を作って押しやすくする */
+  
+  /* 【重要】色が変わる動きをふわっと滑らか（0.3秒）にする指示 */
+  transition: color 0.3s ease; 
+}
+.accordion-inner a:hover {
+  /* 👇 ここにお好みのカラーコードを入れてください */
+  color: #00a4e4;          /* 例：海の雰囲気に合う綺麗な水色 */
+}
+/* summaryタグのデフォルトの矢印（三角マーク）を消す */
+.accordion-trigger {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 10px;
+}
+.accordion-trigger::-webkit-details-marker {
+  display: none; /* Safari用 */
+}
+
+/* 魚の画像のサイズ調整 */
+.fish-icon {
+  width: 50px;  /* お好みのサイズに */
+  height: auto;
+  display: block;
+}
+
+/* 開いたときの中身の背景や余白（自由に変えてください） */
+.accordion-inner {
+  background-color: #f5f9fa;
+  border-radius: 8px;
+}
+.accordion-inner ul {
+  list-style: none;
+  padding: 15px;
+  margin: 0;
+}
+.accordion-inner li {
+  margin-bottom: 10px;
+}
+.accordion-inner li:last-child {
+  margin-bottom: 0;
+}
+.accordion-inner a {
+  color: #333;
+  text-decoration: none;
+}
+/*スライダー*/
+/* スライダー下の文字をセンターにする設定 */
+.slider-caption {
+  text-align: center;   /* 文字を中央揃えにする */
+  margin-top: 15px;     /* スライダーとの間の隙間（お好みで数値を変更してください） */
+  font-size: 12px;      /* 文字の大きさ（任意） */
+  color: #ffffff;          /* 文字の色（任意） */
+  /* 🔽 浮いているスライドの裏に隠れないようにするための指示 🔽 */
+  position: relative;      
+  z-index: 10;             /* スライド画像よりも手前に表示させる */
+}
+.slideshow-container {
+ width: 80%;
+  max-width: 300px; /* 任意の最大幅を指定 */
+  margin:10px auto;    /* これで左寄りになります */
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1/1; /* 例：一般的な横長（16:9）にする場合 */
+    /* 【重要】角をどれくらい丸くするか指定（数字が大きいほど丸くなります） */
+  border-radius: 16px; 
+ /* 【重要】はみ出た画像の角を、丸めた枠に合わせて非表示にする設定 */
+  overflow: hidden; 
+}
+.slider-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* これでスライダーと下の文字をまるごと画面の「中央」に寄せられます */
+  justify-content: center;
+  padding: 20px;       /* まわりの余白 */
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  /* 【重要】画像が1:1の中にぴったり収まるように、自動でトリミング（切り抜き）する設定 */
+  object-fit: cover; 
+}
+.slide {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: fade 15s infinite;
+}
+.slide:nth-child(1) {
+  animation-delay: 0s;
+}
+.slide:nth-child(2) {
+  animation-delay: 5s;
+}
+.slide:nth-child(3) {
+  animation-delay: 10s;
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+  }
+  53% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.main-header {
+  /* 画像の表示エリアの縦幅を指定します */
+  height: 170px; 
+  /* 画像ファイルのパスを指定します（環境に合わせて変更してください） */
+  background-image: url('hd1.jpg'); 
+  /* スクロールして上端に達したら固定する指定 */
+  position: sticky;
+  top: 0;
+  /* 画像がエリアいっぱいに綺麗に収まるようにする設定 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* 他の要素の上に重なるようにします */
+  z-index: 1000;
+  /* 背景色がないと、後ろの文字が透けて見えてしまいます */
+  background-color: #ffffff; 
+}
+body {
+  background-color: #0e1aa4;
+}
+/* スティッキー（固定）要素 */
+.se3 {
+  position: sticky;
+  top: 0px;
+  background-color: rgb(84, 175, 255); 
+}
+/*ddmiiの背景*/
+.hero-wide {
+  /* 1. もともとの青色 */
+  background-color: #007bff; 
+  
+  /* 2. 重ねる画像と繰り返しの設定 */
+  background-image: url('haikei1.png'); 
+  background-repeat: repeat !important; /* ★強制的に縦横リピートさせる */
+  background-position: top left;
+  
+  /* 3. 【重要】繰り返す1枚のサイズを指定（画像に合わせて調整してください） */
+  background-size: 60px 60px; /* ★大きすぎる画像でも、これで小さくして繰り返せます */
+
+  width: 100%; 
+}
+/*テキストの背景*/
+.background-container {
+  max-width: 50%;
+  margin: 0 auto;
+  padding-top: 80px;    
+  padding-bottom: 80px; 
+  padding-left: 20px;   
+  padding-right: 20%;   /* 右側の余白 */
+  background-color: #ffffff;      
+    padding: 20px;             /* 文字が端に張り付かないための余白 */
+  /* ▼ ここを追加すると角が丸くなります */
+  border-radius: 15px;       
+}
+/* 1. ボタンを画面の右下に固定する設定 */
+.floating-fish-btn {
+  position: fixed;
+  bottom: 30px;      /* 画面の下から30pxの位置 */
+  right: 30px;       /* 画面の右から30pxの位置 */
+  z-index: 9999;     /* 他の要素より最前面に表示 */
+  
+  /* 見た目の装飾（お好みで調整してください） */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 2px solid #33a6ff;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+  /* 2. ゆらゆら動くアニメーションの指定 */
+  animation: yura-yura 3s ease-in-out infinite;
+}
+
+/* 魚の絵文字や画像のサイズ調整 */
+.fish-icon {
+  font-size: 24px;
+}
+.fish-text {
+  font-size: 10px;
+  color: #33a6ff;
+  font-weight: bold;
+}
+
+/* 3. ゆらゆら動くアニメーションの本体（上下と傾き） */
+@keyframes yura-yura {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg); /* 上に10px、少し右に傾く */
+  }
+}
+/*泡日記部分*/
+.gradient-background{
+  width:300px;
+  height:600px;
+  background: linear-gradient(to bottom,#1abc9c,#00cfff,#003366);
+}
+.bubble-area {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 泡 */
+.bubble {
+  position: absolute;
+  left: 50%;
+  bottom: -60px;
+
+  font-size: 50px;
+  cursor: pointer;
+  user-select: none;
+
+  transform: translateX(-50%);
+
+  animation: bubbleFloat 6s ease-in-out infinite;
+
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+
+  z-index: 2;
+}
+.bubble1 {
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.bubble2 {
+  left: 40%;
+  animation-delay: 1.5s;
+}
+
+.bubble3 {
+  left: 65%;
+  animation-delay: 3s;
+}
+
+.bubble4 {
+  left: 85%;
+  animation-delay: 0.8s;
+}
+
+/* 泡がゆらゆら上昇する */
+@keyframes bubbleFloat {
+
+  /* 画面の外 */
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+
+  /* 画面に入ってくる */
+  10% {
+    opacity: 1;
+  }
+
+  /* ゆらゆら上昇 */
+  25% {
+    transform: translate(calc(-50% - 15px), -25vh);
+  }
+
+  50% {
+    transform: translate(calc(-50% + 15px), -50vh);
+  }
+
+  75% {
+    transform: translate(calc(-50% - 10px), -75vh);
+  }
+
+  /* 画面上部 */
+  90% {
+    opacity: 1;
+  }
+
+  /* 画面の外へ */
+  100% {
+    transform: translate(calc(-50% + 5px), -115vh);
+    opacity: 0;
+  }
+}
+
+
+/* 泡をタップしたとき */
+.bubble.pop {
+  animation: pop 0.3s ease forwards;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+/*泡タップ直後の白背景を消す*/
+.bubble {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* 日記 */
+.diary {
+  position: fixed;
+
+  font-size: 18px;
+  white-space: nowrap;
+
+  /* クリーム色の背景 */
+ background: #fffbea;
+
+  /* 角を丸くする */
+  border-radius: 15px;
+
+  /* 文字と背景の間の余白 */
+  padding: 10px 18px;
+
+  /* ほんのり影 */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+  opacity: 0;
+
+  transform: translateX(-50%);
+
+  pointer-events: none;
+
+  z-index: 3;
+}
+
+.diary.show {
+  animation: diaryFloat 4s ease-out forwards;
+}
+
+@keyframes diaryFloat {
+
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  35% {
+    transform: translate(calc(-50% + 15px), -70px);
+  }
+
+  55% {
+    transform: translate(calc(-50% - 15px), -140px);
+  }
+
+  75% {
+    transform: translate(calc(-50% + 10px), -210px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% - 5px), -300px);
+  }
+}
+.gradient-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: linear-gradient(
+    to bottom,
+    #1abc9c,
+    #00cfff,
+    #003366
+  );
+
+  z-index: 0;
+}
+/*泡が背景の上にくるように*/
+.bubble-area {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  z-index: 1;
+}
+.bubble {
+  z-index: 2;
+}
+
+.diary {
+  z-index: 3;
+}
+/*美術館員のたこ*/
+.museum-staff {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 10;
+}
+
+#tako {
+  width: 180px;
+  cursor: pointer;
+  display: block;
+}
+
+#staff-message {
+  background: #fff8df;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+/*作品が流れてくる*/
+.art-flow {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.art-item {
+  position: absolute;
+
+  right: -250px;
+
+  width: 180px;
+
+  animation: artFlow 15s linear infinite;
+
+  cursor: pointer;
+}
+
+.art-item img {
+  width: 100%;
+  height: auto;
+
+  display: block;
+
+  border-radius: 5px;
+}
+
+
+/* 作品が右から左へ */
+
+@keyframes artFlow {
+
+  0% {
+    right: -250px;
+  }
+
+  100% {
+    right: 110%;
+  }
+/*作品ごとにタイミングをずらす*/
+}
+.art-item:nth-child(1) {
+  top: 20%;
+  animation-delay: 0s;
+}
+
+.art-item:nth-child(2) {
+  top: 50%;
+  animation-delay: 4s;
+}
+
+.art-item:nth-child(3) {
+  top: 30%;
+  animation-delay: 8s;
+}
+
+.art-item:nth-child(4) {
+  top: 65%;
+  animation-delay: 12s;
+}
+/*鑑賞画面*/
+.art-viewer {
+  position: fixed;
+
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 50, 100, 0.85);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.5s;
+
+  z-index: 20;
+}
+
+.art-viewer.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+#big-art {
+  max-width: 80vw;
+  max-height: 70vh;
+
+  object-fit: contain;
+
+  border-radius: 5px;
+}
+
+
+#next-art {
+  margin-top: 30px;
+
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: #fff8df;
+
+  cursor: pointer;
+}
+/*大喜利inabottle*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.ogiri {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 海 */
+.sea {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(#67d9ed, #008fc4);
+}
+
+/* 砂浜 */
+.beach {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 48%;
+  background: #f5df9c;
+}
+
+/* いわしちゃん */
+#iwashi {
+  position: absolute;
+  left: 50%;
+  bottom: 18%;
+  transform: translateX(-50%);
+  font-size: 80px;
+  z-index: 5;
+  transition: 0.5s;
+}
+
+/* 瓶 */
+#bottle {
+  position: absolute;
+  left: 62%;
+  bottom: 15%;
+  font-size: 70px;
+  cursor: pointer;
+  z-index: 6;
+}
+
+/* 紙 */
+#paper {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  transform: translateX(-50%) rotate(-3deg);
+  font-size: 80px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+/* お題 */
+#question {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  transform: translateX(-50%);
+  max-width: 80%;
+  padding: 20px 30px;
+  background: #fff8df;
+  border-radius: 8px;
+  font-size: 25px;
+  text-align: center;
+  opacity: 0;
+  z-index: 10;
+}
+
+/* 回答 */
+#answer {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+  padding: 20px 30px;
+  background: white;
+  border-radius: 18px;
+  font-size: 24px;
+  text-align: center;
+  opacity: 0;
+  z-index: 10;
+}
+
+/* 操作メッセージ */
+#message {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%);
+  color: #555;
+  font-size: 18px;
+  z-index: 20;
+}
+
+/* 瓶を海へ投げる */
+#bottle.throw {
+  animation: throwBottle 2s ease-in forwards;
+}
+
+@keyframes throwBottle {
+
+  0% {
+    transform: translate(0, 0) rotate(0);
+  }
+
+  40% {
+    transform: translate(80px, -150px) rotate(40deg);
+  }
+
+  100% {
+    transform: translate(300px, -500px) rotate(180deg);
+    opacity: 0;
+  }
+
+}
+
+/* いわしちゃんが紙を取り出す */
+#iwashi.take-paper {
+  transform:
+    translateX(-50%)
+    translateY(-20px);
+}
+#bottle {
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+}
+#question,
+#answer,
+#message {
+  z-index: 100;
+}
+#bottle.arrive {
+  animation: bottleArrive 1.5s ease-out forwards;
+}
+
+@keyframes bottleArrive {
+
+  /* 海の中 */
+  0% {
+    transform: translate(500px, -100px) rotate(0deg);
+    opacity: 0;
+  }
+
+  /* 波に乗ってくる */
+  40% {
+    transform: translate(300px, -60px) rotate(20deg);
+    opacity: 1;
+  }
+
+  /* 砂浜へ */
+  70% {
+    transform: translate(120px, 10px) rotate(60deg);
+  }
+
+  /* ころん */
+  85% {
+    transform: translate(30px, 0) rotate(110deg);
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(90deg);
+    opacity: 1;
+  }
+
+}
+/*ビンを流す*/
+.form-area {
+  position: relative;
+  width: 600px;
+  max-width: 90%;
+  margin: 50px auto;
+  padding: 60px 70px;
+
+  background-image: url("img/paper.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background: #f5df9c;
+
+  z-index: 10;
+}
+
+.form-area form {
+  position: relative;
+  z-index: 2;
+}
+
+.form-area h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #555;
+}
+
+.form-area label {
+  display: block;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.form-area textarea,
+.form-area input {
+  display: block;
+  width: 100%;
+  margin-top: 7px;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #aaa;
+  background: rgba(255, 255, 255, 0.4);
+  font-size: 16px;
+  outline: none;
+}
+
+.form-area textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.form-area button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 20px;
+  background: #4ca8c4;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-bottle {
+  position: absolute;
+  width: 130px;
+  right: -45px;
+  bottom: -35px;
+  transform: rotate(15deg);
+  z-index: 3;
+}

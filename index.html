@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>今日もいい日</title>
+     <link rel="stylesheet" href="style.css">       
+</head>
+<header class="main-header">
+  <h4>まひろの今日もいい日</h4>
+</header>
+</style>
+</head>
+<!-- アコーディオンの全体を囲むコンテナ -->
+<div class="accordion-container">
+  
+  <details class="accordion-details">
+    <!-- ボタン部分（魚のアイコン） -->
+    <summary class="accordion-trigger">
+      <img src="fish.png" alt="魚のメニュー" class="fish-icon">
+    </summary>
+    
+    <!-- 展開するメニュー部分 -->
+    <div class="accordion-content">
+      <div class="accordion-inner">
+        <ul>
+          <li><a href="ddmii.html">どうでもいい記録</a></li>
+          <li><a href="#">筆と鉛筆</a></li>
+          <li><a href="#">音楽堂</a></li>
+          <li><a href="#">巣</a></li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. 魚のボタンと、メニューの中身をプログラムに見つけさせる
+  const trigger = document.querySelector('.accordion-trigger');
+  const content = document.querySelector('.accordion-content');
+
+  // もしどちらかが見つからない場合はエラーを防ぐ
+  if (!trigger || !content) return;
+
+  // 最初はメニューを完全に非表示（安全策）にしておく
+  content.style.display = 'none';
+
+  // 2. 魚のボタンがクリックされたときの動き
+  trigger.addEventListener('click', () => {
+    // 魚の見た目を変えるためのクラスを切り替える
+    trigger.classList.toggle('is-open');
+
+    // 3. 今メニューが閉じているなら開き、開いているなら閉じる（強制切り替え）
+    if (content.style.display === 'none') {
+      content.style.display = 'block';    // 強制表示
+      content.style.height = 'auto';      // 高さを自動で広げる
+    } else {
+      content.style.display = 'none';     // 強制非表示
+      content.style.height = '0';
+    }
+  });
+});
+</script>
+
+<main>
+  <section class="slider-section">
+   <!--スライダー-->
+<div class="slideshow-container">
+  <div class="slide">
+    <img src="https://picsum.photos/1000/450/?random=1" alt="Slide 1">
+  </div>
+  <div class="slide">
+    <img src="https://picsum.photos/1000/450/?random=2" alt="Slide 2">
+  </div>
+  <div class="slide">
+    <img src="https://picsum.photos/1000/450/?random=3" alt="Slide 3">
+  </div>
+  </div>
+  <!-- すぐ下に文字を入れる（わかりやすいようにクラス名をつけます） -->
+<p class="slider-caption">お昼ご飯たべるにゃ～</p>
+<br>
+<br>
+<figure style="text-align: center;">
+  <img src="ddria.jpg" alt="ドドリア様">
+  <figcaption style="margin-top: 8px; color: #f9f9f9;">どうでもいい記録</figcaption>
+</figure>
+<figure style="text-align: center;">
+  <img src="ddria.jpg" alt="ドドリア様">
+  <figcaption style="margin-top: 8px; color: #f9f9f9;">筆と鉛筆</figcaption>
+</figure>
+<figure style="text-align: center;">
+  <img src="ddria.jpg" alt="ドドリア様">
+  <figcaption style="margin-top: 8px; color: #f9f9f9;">音楽堂</figcaption>
+</figure>
+<figure style="text-align: center;">
+  <img src="ddria.jpg" alt="ドドリア様">
+  <figcaption style="margin-top: 8px; color: #f9f9f9;">大喜利の舟</figcaption>
+</figure>
+  </section>
+  </main>
+<body>
+  <footer style="background-color: #ffd000; color: #030303; text-align: center; padding: 20px 0; font-size: 12px;">
+  <p style="margin: 0;">&copy; 2026 今日もいい日</p>
+</footer>
+
+</aside>
+</body>
+</html>
