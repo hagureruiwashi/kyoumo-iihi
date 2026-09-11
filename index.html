@@ -1,109 +1,236 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>今日もいい日</title>
-     <link rel="stylesheet" href="style.css">       
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================
+           ローディング画面
+        ========================= */
+
+        #loading {
+            position: fixed;
+            inset: 0;
+            background: #6FB7E9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+
+            /* 3秒後に消える */
+            animation: loading-fadeout 0.5s ease forwards;
+            animation-delay: 2.5s;
+        }
+
+        /* いわしちゃん */
+        #loading img {
+            width: 220px;
+            animation: boat-yura 1.5s ease-in-out infinite;
+        }
+
+        /* ゆらゆら揺れる */
+        @keyframes boat-yura {
+            0%, 100% {
+                transform: rotate(-3deg) translateY(0);
+            }
+
+            50% {
+                transform: rotate(3deg) translateY(-8px);
+            }
+        }
+
+        /* 最後に少し遠ざかって消える */
+        @keyframes loading-fadeout {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1.08);
+                pointer-events: none;
+            }
+        }
+    </style>
 </head>
-<header class="main-header">
-  <h4>まひろの今日もいい日</h4>
-</header>
-</style>
-</head>
-<!-- アコーディオンの全体を囲むコンテナ -->
-<div class="accordion-container">
-  
-  <details class="accordion-details">
-    <!-- ボタン部分（魚のアイコン） -->
-    <summary class="accordion-trigger">
-      <img src="fish.png" alt="魚のメニュー" class="fish-icon">
-    </summary>
-    
-    <!-- 展開するメニュー部分 -->
-    <div class="accordion-content">
-      <div class="accordion-inner">
-        <ul>
-          <li><a href="awa.html">つぶやき</a></li>
-          <li><a href="tenrankai.html">水中展覧会</a></li>
-          <li><a href="oogiri.html">大喜利IN A BOTTLE</a></li>
-          <li><a href="nagasu.html">ビンを流す</a></li>
-        </ul>
-      </div>
+
+
+<body>
+
+    <!-- =========================
+         ローディング画面
+    ========================== -->
+
+    <div id="loading">
+        <img src="iwashi.png" alt="いわしちゃん">
     </div>
-  </details>
+
+
+    <!-- =========================
+         ヘッダー
+    ========================== -->
+
+    <header class="main-header">
+        <h4>まひろの今日もいい日</h4>
+    </header>
+    <!-- =========================
+         メイン
+    ========================== -->
+
+    <main>
+
+        <section class="slider-section">
+
+            <!-- スライダー -->
+
+            <div class="slideshow-container">
+
+                <div class="slide">
+                    <img src="https://picsum.photos/1000/450/?random=1" alt="Slide 1">
+                </div>
+
+                <div class="slide">
+                    <img src="https://picsum.photos/1000/450/?random=2" alt="Slide 2">
+                </div>
+
+                <div class="slide">
+                    <img src="https://picsum.photos/1000/450/?random=3" alt="Slide 3">
+                </div>
+
+            </div>
+
+
+            <p class="slider-caption">
+                お昼ご飯たべるにゃ～
+            </p>
+
+
+            <br>
+            <br>
+
+
+            <!-- コンテンツ -->
+
+            <figure style="text-align: center;">
+                <img src="#" >
+                <figcaption style="margin-top: 8px; color: #f9f9f9;">
+                    ぷかぷか便り
+                </figcaption>
+            </figure>
+
+
+            <figure style="text-align: center;">
+                <img src="#" >
+                <figcaption style="margin-top: 8px; color: #f9f9f9;">
+                    水中展覧会
+                </figcaption>
+            </figure>
+
+
+            <figure style="text-align: center;">
+                <img src="#">
+                <figcaption style="margin-top: 8px; color: #f9f9f9;">
+                    大喜利IN A BOTTLE
+                </figcaption>
+            </figure>
+
+
+            <figure style="text-align: center;">
+                <img src="#" >
+                <figcaption style="margin-top: 8px; color: #f9f9f9;">
+                    ビンを流す
+                </figcaption>
+            </figure>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         フッター
+    ========================== -->
+ <footer>
+
+  <div class="crab-guide">
+
+    <div class="crab-balloon">
+        <span id="visitor-count">○</span>人目のお客さんカニ～
+    </div>
+
+    🦀
 
 </div>
-</div>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. 魚のボタンと、メニューの中身をプログラムに見つけさせる
-  const trigger = document.querySelector('.accordion-trigger');
-  const content = document.querySelector('.accordion-content');
 
-  // もしどちらかが見つからない場合はエラーを防ぐ
-  if (!trigger || !content) return;
+        <nav class="footer-nav">
 
-  // 最初はメニューを完全に非表示（安全策）にしておく
-  content.style.display = 'none';
+            <div class="footer-link">
+                <a href="pages/awa.html">
+                    <span class="footer-button">◎</span>
+                    ぷかぷか便り
+                </a>
+            </div>
 
-  // 2. 魚のボタンがクリックされたときの動き
-  trigger.addEventListener('click', () => {
-    // 魚の見た目を変えるためのクラスを切り替える
-    trigger.classList.toggle('is-open');
+            <div class="footer-link">
+                <a href="pages/tenrankai.html">
+                    <span class="footer-button">◎</span>
+                    水中展覧会
+                </a>
+            </div>
 
-    // 3. 今メニューが閉じているなら開き、開いているなら閉じる（強制切り替え）
-    if (content.style.display === 'none') {
-      content.style.display = 'block';    // 強制表示
-      content.style.height = 'auto';      // 高さを自動で広げる
-    } else {
-      content.style.display = 'none';     // 強制非表示
-      content.style.height = '0';
-    }
-  });
-});
+            <div class="footer-link">
+                <a href="pages/oogiri.html">
+                    <span class="footer-button">◎</span>
+                    大喜利 IN A BOTTLE
+                </a>
+            </div>
+
+            <div class="footer-link">
+                <a href="pages/nagasu.html">
+                    <span class="footer-button">◎</span>
+                    ビンを流す
+                </a>
+            </div>
+
+            <div class="footer-link">
+                <a href="pages/iwashi.html">
+                    <span class="footer-button">◎</span>
+                    いわしちゃんとは？
+                </a>
+            </div>
+
+        </nav>
+
+    </div>
+
+    <p class="copyright">
+        &copy; 2026 今日もいい日
+    </p>
+
+</footer>
+        <script>
+
+    /* =========================
+       ローディング画面を3秒で消す
+    ========================== */
+
+    setTimeout(() => {
+
+        const loading =
+            document.getElementById('loading');
+
+        if (loading) {
+            loading.style.display = 'none';
+        }
+
+    }, 1000);
+
 </script>
 
-<main>
-  <section class="slider-section">
-   <!--スライダー-->
-<div class="slideshow-container">
-  <div class="slide">
-    <img src="https://picsum.photos/1000/450/?random=1" alt="Slide 1">
-  </div>
-  <div class="slide">
-    <img src="https://picsum.photos/1000/450/?random=2" alt="Slide 2">
-  </div>
-  <div class="slide">
-    <img src="https://picsum.photos/1000/450/?random=3" alt="Slide 3">
-  </div>
-  </div>
-  <!-- すぐ下に文字を入れる（わかりやすいようにクラス名をつけます） -->
-<p class="slider-caption">お昼ご飯たべるにゃ～</p>
-<br>
-<br>
-<figure style="text-align: center;">
-  <img src="ddria.jpg" alt="ドドリア様">
-  <figcaption style="margin-top: 8px; color: #f9f9f9;">どうでもいい記録</figcaption>
-</figure>
-<figure style="text-align: center;">
-  <img src="ddria.jpg" alt="ドドリア様">
-  <figcaption style="margin-top: 8px; color: #f9f9f9;">筆と鉛筆</figcaption>
-</figure>
-<figure style="text-align: center;">
-  <img src="ddria.jpg" alt="ドドリア様">
-  <figcaption style="margin-top: 8px; color: #f9f9f9;">音楽堂</figcaption>
-</figure>
-<figure style="text-align: center;">
-  <img src="ddria.jpg" alt="ドドリア様">
-  <figcaption style="margin-top: 8px; color: #f9f9f9;">大喜利の舟</figcaption>
-</figure>
-  </section>
-  </main>
-<body>
-  <footer style="background-color: #ffd000; color: #030303; text-align: center; padding: 20px 0; font-size: 12px;">
-  <p style="margin: 0;">&copy; 2026 今日もいい日</p>
-</footer>
-
-</aside>
 </body>
 </html>

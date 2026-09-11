@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
 // 泡日記
 
 const bubbles = document.querySelectorAll(".bubble");
@@ -125,18 +127,16 @@ if (tako) {
   tako.addEventListener("click", function() {
 
     // 手を伸ばす
-    tako.src = "tako2.png";
+    tako.src = "../images/tako2.png";
 
     // 1秒後に通常に戻す
     setTimeout(function() {
-      tako.src = "tako1.png";
+      tako.src = "../images/tako1.png";
     }, 1000);
 
   });
 
 }
-
-
 // =========================
 // 展覧会
 // =========================
